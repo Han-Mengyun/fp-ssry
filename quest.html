@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>常见问题 - 富平柿子饼</title>
+    <style>
+        :root {
+            --primary-color: #FF6B00;
+            --background-color: #F5F5F5;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--background-color);
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .faq-search {
+            display: flex;
+            margin-bottom: 30px;
+        }
+
+        .faq-search input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: 2px solid var(--primary-color);
+            border-radius: 25px 0 0 25px;
+            font-size: 1rem;
+        }
+
+        .faq-search button {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .faq-search button:hover {
+            background-color: #FF8533;
+        }
+
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            margin: 0 10px 10px 0;
+            padding: 8px 15px;
+            background-color: white;
+            border: 1px solid var(--primary-color);
+            border-radius: 20px;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .faq-item {
+            background-color: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+        }
+
+        .faq-question h3 {
+            flex-grow: 1;
+            margin-right: 15px;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 15px;
+            background-color: white;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">富平柿子饼</div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">首页</a></li>
+                <li><a href="history.html">发展历史</a></li>
+                <li><a href="gallery.html">工艺展示</a></li>
+                <li><a href="quest.html">常见问题</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="faq-search">
+            <input type="text" placeholder="搜索您的问题" id="searchInput">
+            <button onclick="searchFAQ()">搜索</button>
+        </div>
+
+        <div class="faq-categories">
+            <button class="category-btn active" data-category="all">全部</button>
+            <button class="category-btn" data-category="product">产品相关</button>
+            <button class="category-btn" data-category="order">订购问题</button>
+            <button class="category-btn" data-category="delivery">配送问题</button>
+        </div>
+
+        <div id="faqList">
+            <!-- FAQ items will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        const faqs = [
+            {
+                question: "富平柿子饼的保质期是多久？",
+                answer: "我们的柿子饼在密封保存的情况下，可以保存3-6个月。建议放在阴凉干燥的地方，避免阳光直射。",
+                category: "product"
+            },
+            {
+                question: "柿子饼的原料是什么？",
+                answer: "我们的柿子饼采用富平当地新鲜柿子，精选优质原料，不添加任何防腐剂，保持传统制作工艺。",
+                category: "product"
+            },
+            {
+                question: "如何在线订购？",
+                answer: "您可以通过我们的官方网站或微信小程序进行在线订购。选择您需要的规格和数量，填写收货信息即可完成订单。",
+                category: "order"
+            },
+            {
+                question: "支持全国配送吗？",
+                answer: "目前我们支持全国大部分城市的配送。偏远地区可能会有额外的配送费用，具体情况请联系客服。",
+                category: "delivery"
+            },
+            {
+                question: "柿子饼适合什么人群食用？",
+                answer: "富平柿子饼营养丰富，适合大多数人群。特别适合喜欢传统美食的人，以及追求健康的消费者。老人和儿童也可以适量食用。",
+                category: "product"
+            }
+        ];
+
+        function renderFAQs(category = 'all') {
+            const faqList = document.getElementById('faqList');
+            faqList.innerHTML = '';
+
+            const filteredFAQs = category === 'all'
+                ? faqs
+                : faqs.filter(faq => faq.category === category);
+
+            filteredFAQs.forEach((faq, index) => {
+                const faqItem = document.createElement('div');
+                faqItem.classList.add('faq-item');
+                faqItem.innerHTML = `
+                    <div class="faq-question" onclick="toggleFAQ(${index})">
+                        <h3>${faq.question}</h3>
+                        <svg class="toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">${faq.answer}</div>
+                `;
+                faqList.appendChild(faqItem);
+            });
+        }
+
+        function toggleFAQ(index) {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems[index].classList.toggle('active');
+        }
+
+        function searchFAQ() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const filteredFAQs = faqs.filter(faq =>
+                faq.question.toLowerCase().includes(searchInput) ||
+                faq.answer.toLowerCase().includes(searchInput)
+            );
+
+            const faqList = document.getElementById('faqList');
+            faqList.innerHTML = '';
+
+            filteredFAQs.forEach((faq, index) => {
+                const faqItem = document.createElement('div');
+                faqItem.classList.add('faq-item');
+                faqItem.innerHTML = `
+                    <div class="faq-question" onclick="toggleFAQ(${index})">
+                        <h3>${faq.question}</h3>
+                        <svg class="toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">${faq.answer}</div>
+                `;
+                faqList.appendChild(faqItem);
+            });
+        }
+
+        // 类别筛选
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                renderFAQs(this.dataset.category);
+            });
+        });
+
+        // 初始化
+        renderFAQs();
+    </script>
+</body>
+</html>

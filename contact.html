@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 富平柿子饼</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        /* 添加表单发送状态样式 */
+        .send-status {
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .send-success {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .send-error {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">富平柿子饼</div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">首页</a></li>
+                <li><a href="history.html">发展历史</a></li>
+                <li><a href="gallery.html">工艺展示</a></li>
+                <li><a href="quest.html">常见问题</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- <section class="contact-section">
+        <div class="container">
+            <h2 data-aos="fade-up">联系我们</h2>
+            <div class="contact-grid">
+                <div class="contact-info" data-aos="fade-right">
+                    <h3>联系方式</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>地址：陕西省富平县某某街道</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>电话：123-456-7890</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>邮箱：info@fuping.com</span>
+                        </li>
+                    </ul>
+                </div>
+                <form class="contact-form" id="contact-form" data-aos="fade-left">
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">邮箱</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">电话</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">留言</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">发送消息</button>
+                </form>
+            </div>
+        </div>
+    </section> -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 data-aos="fade-up">联系我们</h2>
+            <div class="contact-grid">
+                <div class="contact-info" data-aos="fade-right">
+                    <h3>联系方式</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>地址：陕西省富平县某某街道</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>电话：123-456-7890</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>邮箱：info@fuping.com</span>
+                        </li>
+                    </ul>
+                </div>
+                <form class="contact-form" id="contact-form" data-aos="fade-left">
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">邮箱</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">电话</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">留言</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">发送消息</button>
+
+                    <!-- 添加发送状态提示 -->
+                    <div id="send-status" class="send-status" style="display:none;"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer部分与之前相同 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>联系方式</h3>
+                    <p>电话：123-456-7890</p>
+                    <p>邮箱：info@fuping.com</p>
+                </div>
+                <div class="footer-section">
+                    <h3>关注我们</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">微信</a>
+                        <a href="#" class="social-link">微博</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 富平柿子饼. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script>
+        // EmailJS初始化函数
+        function initEmailJS() {
+            // 替换为你在EmailJS申请的PUBLIC KEY
+            emailjs.init("GqEWgB-Yow9V0uCOI");
+        }
+
+        // 发送邮件函数
+        function sendEmail(event) {
+            event.preventDefault(); // 阻止表单默认提交
+
+            const statusDiv = document.getElementById('send-status');
+            statusDiv.style.display = 'none';
+
+            // 获取表单数据
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+
+            // 显示发送中状态
+            statusDiv.innerHTML = '正在发送，请稍候...';
+            statusDiv.style.backgroundColor = '#2196F3';
+            statusDiv.style.display = 'block';
+
+            // 使用EmailJS发送邮件
+            emailjs.send(
+                "outlook",   // 服务ID
+                "fp-ssry",  // 模板ID
+                {
+                    from_name: name,
+                    from_email: email,
+                    phone: phone,
+                    message: message
+                }
+            ).then(
+                function(response) {
+                    console.log("邮件发送成功", response);
+                    statusDiv.innerHTML = '消息发送成功，我们会尽快回复您！';
+                    statusDiv.className = 'send-status send-success';
+
+                    // 重置表单
+                    document.getElementById('contact-form').reset();
+                },
+                function(error) {
+                    console.log("邮件发送失败", error);
+                    statusDiv.innerHTML = '发送失败，请稍后重试或检查网络';
+                    statusDiv.className = 'send-status send-error';
+                }
+            );
+        }
+
+        // 页面加载后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initEmailJS();
+
+            // 绑定表单提交事件
+            const contactForm = document.getElementById('contact-form');
+            contactForm.addEventListener('submit', sendEmail);
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

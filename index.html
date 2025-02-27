@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>富平柿子饼 - 传统美味</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" rel="stylesheet">
+    <style>
+        .hero-swiper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .hero-swiper .swiper-slide {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .hero-overlay {
+            position: relative;
+            z-index: 10;
+            background: rgba(0,0,0,0.5);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 20;
+            color: white;
+            text-align: center;
+            padding: 150px 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">富平柿子饼</div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">首页</a></li>
+                <li><a href="history.html">发展历史</a></li>
+                <li><a href="gallery.html">工艺展示</a></li>
+                <li><a href="quest.html">常见问题</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero relative h-screen">
+        <div class="swiper hero-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image: url('https://picsum.photos/seed/shizibing1/1920/1080')"></div>
+                <div class="swiper-slide" style="background-image: url('https://picsum.photos/seed/shizibing2/1920/1080')"></div>
+                <div class="swiper-slide" style="background-image: url('https://picsum.photos/seed/shizibing3/1920/1080')"></div>
+                <div class="swiper-slide" style="background-image: url('https://picsum.photos/seed/shizibing4/1920/1080')"></div>
+            </div>
+            <div class="swiper-pagination hero-pagination"></div>
+        </div>
+
+        <div class="hero-overlay absolute inset-0"></div>
+
+        <div class="hero-content container mx-auto">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6" data-aos="fade-up">富平柿子饼</h1>
+            <p class="text-xl md:text-2xl mb-8" data-aos="fade-up" data-aos-delay="200">传承百年工艺 品味陕西美食</p>
+            <!-- <a href="#about" class="inline-block bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-full text-lg" data-aos="fade-up" data-aos-delay="400">了解更多</a> -->
+            <a href="#about" class="cta-button" data-aos="fade-up" data-aos-delay="400">了解更多</a>
+        </div>
+    </header>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 data-aos="fade-up">关于富平柿子饼</h2>
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <p>富平柿子饼是陕西省富平县传统特色美食，具有悠久的历史文化。采用当地优质柿子，经过传统工艺精心制作，口感独特，营养丰富。</p>
+                    <p>每一块柿子饼都凝聚着匠人的智慧和对美食的追求，是富平人引以为豪的特产。</p>
+                </div>
+                <div class="about-image" data-aos="fade-left">
+                    <img src="images/about.jpg" alt="富平柿子饼">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 data-aos="fade-up">产品特色</h2>
+            <div class="feature-grid">
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">🌟</div>
+                    <h3>传统工艺</h3>
+                    <p>百年传承，精湛技艺</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">🍊</div>
+                    <h3>优质原料</h3>
+                    <p>精选当地鲜柿</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">👨‍🍳</div>
+                    <h3>匠心制作</h3>
+                    <p>纯手工打造</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">柿子饼制作工艺</h2>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-gray-100 p-6 rounded-lg text-center" data-aos="zoom-in">
+                    <div class="text-5xl mb-4">🍂</div>
+                    <h3 class="font-bold mb-2">选材</h3>
+                    <p>精选当季成熟柿子</p>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-lg text-center" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="text-5xl mb-4">🔪</div>
+                    <h3 class="font-bold mb-2">去核</h3>
+                    <p>仔细去除柿子核</p>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-lg text-center" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="text-5xl mb-4">🔥</div>
+                    <h3 class="font-bold mb-2">制饼</h3>
+                    <p>传统手工压制成型</p>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-lg text-center" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="text-5xl mb-4">🌞</div>
+                    <h3 class="font-bold mb-2">晾晒</h3>
+                    <p>自然晾晒增添风味</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>联系方式</h3>
+                    <p>电话：123-456-7890</p>
+                    <p>邮箱：info@fuping.com</p>
+                </div>
+                <div class="footer-section">
+                    <h3>关注我们</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">微信</a>
+                        <a href="#" class="social-link">微博</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 富平柿子饼. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new Swiper('.hero-swiper', {
+                loop: true,
+                effect: 'fade', // 渐变效果
+                autoplay: {
+                    delay: 5000, // 5秒切换一次
+                    disableOnInteraction: false
+                },
+                pagination: {
+                    el: '.hero-pagination',
+                    clickable: true
+                },
+                speed: 1000 // 切换动画时长
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+</body>
+</html>
