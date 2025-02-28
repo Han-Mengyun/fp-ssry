@@ -3,13 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     <title>常见问题 - 富平柿子饼</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        .hero-swiper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .hero-swiper .swiper-slide {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .hero-overlay {
+            position: relative;
+            z-index: 10;
+            background: rgba(0,0,0,0.5);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 20;
+            color: white;
+            text-align: center;
+            padding: 150px 20px;
+        }
+    </style>
     <style>
         :root {
             --primary-color: #FF6B00;
-            --background-color: #F5F5F5;
-            --text-color: #333;
+            --overlay-color: rgba(0,0,0,0.5);
         }
 
         * {
@@ -19,34 +45,28 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background-color: var(--background-color);
-            line-height: 1.6;
-            color: var(--text-color);
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
         }
 
         .navbar {
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 15px 0;
-            position: sticky;
+            position: fixed;
+            width: 100%;
             top: 0;
+            left: 0;
+            background-color: rgba(255,255,255,0.9);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             z-index: 1000;
+            transition: all 0.3s ease;
         }
 
-        .navbar-content {
+        .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 15px;
+            position: relative;
         }
 
         .logo {
@@ -55,31 +75,231 @@
             color: var(--primary-color);
         }
 
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .burger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 3px 0;
+            transition: 0.4s;
+        }
+
+        /* 移动端样式 */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 70px;
+                width: 100%;
+                height: calc(100vh - 70px);
+                flex-direction: column;
+                background-color: rgba(255,255,255,0.95);
+                align-items: center;
+                justify-content: center;
+                transition: 0.3s;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .burger {
+                display: flex;
+            }
+
+            .burger.active .line1 {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .burger.active .line2 {
+                opacity: 0;
+            }
+
+            .burger.active .line3 {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero-swiper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--overlay-color);
+            z-index: 10;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 20;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #FF8C00;
+        }
+
+        /* 其他部分保持原有样式 */
+        @media screen and (max-width: 768px) {
+            .text-5xl {
+                font-size: 2.5rem;
+            }
+
+            .text-xl {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-image, .about-text {
+                width: 100%;
+            }
+        }
+    </style>
+    <style>
+        :root {
+            --primary-color: #FF6B00;
+            --secondary-color: #FF8C33;
+            --background-color: #FFF5E6;
+            --text-color: #333;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Helvetica Neue', 'Microsoft YaHei', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .page-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 20px 50px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .page-subtitle {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
         .faq-search {
             display: flex;
             margin-bottom: 30px;
+            animation: slideUp 0.8s ease;
         }
 
         .faq-search input {
             flex-grow: 1;
-            padding: 10px 15px;
+            padding: 12px 20px;
             border: 2px solid var(--primary-color);
-            border-radius: 25px 0 0 25px;
+            border-radius: 30px 0 0 30px;
             font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-search input:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255,110,0,0.2);
         }
 
         .faq-search button {
-            padding: 10px 20px;
+            padding: 12px 25px;
             background-color: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 0 25px 25px 0;
+            border-radius: 0 30px 30px 0;
             cursor: pointer;
             transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .faq-search button:hover {
-            background-color: #FF8533;
+            background-color: var(--secondary-color);
         }
 
         .faq-categories {
@@ -87,63 +307,131 @@
             justify-content: center;
             margin-bottom: 30px;
             flex-wrap: wrap;
+            gap: 10px;
+            animation: fadeIn 1s ease;
         }
 
         .category-btn {
-            margin: 0 10px 10px 0;
-            padding: 8px 15px;
-            background-color: white;
-            border: 1px solid var(--primary-color);
+            padding: 8px 16px;
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
             border-radius: 20px;
             color: var(--primary-color);
             cursor: pointer;
             transition: all 0.3s;
+            font-weight: 500;
         }
 
-        .category-btn.active, .category-btn:hover {
+        .category-btn.active,
+        .category-btn:hover {
             background-color: var(--primary-color);
             color: white;
         }
 
         .faq-item {
             background-color: white;
-            border-radius: 10px;
+            border-radius: 15px;
             margin-bottom: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             overflow: hidden;
             transition: all 0.3s;
+            animation: slideUp 0.8s ease;
         }
 
         .faq-question {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px;
+            padding: 18px 25px;
             cursor: pointer;
+            background-color: var(--white);
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
             background-color: #f9f9f9;
         }
 
         .faq-question h3 {
             flex-grow: 1;
             margin-right: 15px;
+            font-size: 1.1rem;
+            color: var(--text-color);
         }
 
         .faq-answer {
             display: none;
-            padding: 15px;
-            background-color: white;
+            padding: 20px 25px;
+            background-color: #FAFAFA;
+            border-top: 1px solid #f0f0f0;
         }
 
         .faq-item.active .faq-answer {
             display: block;
+            animation: slideDown 0.5s ease;
         }
 
         .toggle-icon {
             transition: transform 0.3s;
+            color: var(--primary-color);
         }
 
         .faq-item.active .toggle-icon {
             transform: rotate(180deg);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 500px;
+            }
+        }
+
+        /* 响应式优化 */
+        @media screen and (max-width: 600px) {
+            .page-container {
+                padding: 80px 15px 30px;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .faq-search {
+                flex-direction: column;
+            }
+
+            .faq-search input,
+            .faq-search button {
+                width: 100%;
+                border-radius: 30px;
+                margin-bottom: 10px;
+            }
+
+            .category-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -152,10 +440,10 @@
         <div class="container">
             <div class="logo">富平柿子饼</div>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">首页</a></li>
+                <li><a href="index.html">首页</a></li>
                 <li><a href="history.html">发展历史</a></li>
                 <li><a href="gallery.html">工艺展示</a></li>
-                <li><a href="quest.html">常见问题</a></li>
+                <li><a href="quest.html" class="active">常见问题</a></li>
                 <li><a href="contact.html">联系我们</a></li>
             </ul>
             <div class="burger">
@@ -165,15 +453,21 @@
             </div>
         </div>
     </nav>
+    <div class="page-container">
+        <div class="page-header">
+            <h1 class="page-title">常见问题解答</h1>
+            <p class="page-subtitle">找到您想了解的柿子饼知识</p>
+        </div>
 
-    <div class="container">
         <div class="faq-search">
             <input type="text" placeholder="搜索您的问题" id="searchInput">
-            <button onclick="searchFAQ()">搜索</button>
+            <button onclick="searchFAQ()">
+                <i class="ri-search-line"></i>搜索
+            </button>
         </div>
 
         <div class="faq-categories">
-            <button class="category-btn active" data-category="all">全部</button>
+            <button class="category-btn active" data-category="all">全部问题</button>
             <button class="category-btn" data-category="product">产品相关</button>
             <button class="category-btn" data-category="order">订购问题</button>
             <button class="category-btn" data-category="delivery">配送问题</button>
@@ -227,9 +521,7 @@
                 faqItem.innerHTML = `
                     <div class="faq-question" onclick="toggleFAQ(${index})">
                         <h3>${faq.question}</h3>
-                        <svg class="toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
+                        <i class="ri-arrow-down-s-line toggle-icon" style="font-size: 24px;"></i>
                     </div>
                     <div class="faq-answer">${faq.answer}</div>
                 `;
@@ -239,7 +531,17 @@
 
         function toggleFAQ(index) {
             const faqItems = document.querySelectorAll('.faq-item');
-            faqItems[index].classList.toggle('active');
+            const clickedItem = faqItems[index];
+
+            // 关闭其他已打开的FAQ
+            faqItems.forEach(item => {
+                if (item !== clickedItem) {
+                    item.classList.remove('active');
+                }
+            });
+
+            // 切换当前点击的FAQ
+            clickedItem.classList.toggle('active');
         }
 
         function searchFAQ() {
@@ -258,9 +560,7 @@
                 faqItem.innerHTML = `
                     <div class="faq-question" onclick="toggleFAQ(${index})">
                         <h3>${faq.question}</h3>
-                        <svg class="toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
+                        <i class="ri-arrow-down-s-line toggle-icon" style="font-size: 24px;"></i>
                     </div>
                     <div class="faq-answer">${faq.answer}</div>
                 `;
@@ -279,6 +579,51 @@
 
         // 初始化
         renderFAQs();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Swiper 初始化
+            new Swiper('.hero-swiper', {
+                loop: true,
+                effect: 'fade',
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false
+                },
+                pagination: {
+                    el: '.hero-pagination',
+                    clickable: true
+                },
+                speed: 1000
+            });
+
+            // 导航栏响应式交互
+            const burger = document.querySelector('.burger');
+            const navLinks = document.querySelector('.nav-links');
+
+            burger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                burger.classList.toggle('active');
+            });
+
+            // 点击菜单项关闭菜单
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    burger.classList.remove('active');
+                });
+            });
+
+            // AOS 初始化
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+        });
     </script>
 </body>
 </html>
